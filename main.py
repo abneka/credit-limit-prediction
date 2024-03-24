@@ -19,8 +19,8 @@ credit_data['Income'] = credit_data['Income']*1000
 
 if not os.path.exists('pickles/lin_reg_model.pkl'):
     train_linear_reg(credit_data)
-# if not os.path.exists('pickles/xgboost_model.pkl'):
-#     train_xgboost_reg(credit_data)
+if not os.path.exists('pickles/xgboost_model.pkl'):
+    train_xgboost_reg(credit_data)
 
 app = FastAPI()
 
