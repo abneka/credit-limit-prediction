@@ -22,12 +22,13 @@ async def pred_lr(request: Request):
     except ValueError:
         return JSONResponse(content="Invalid value for 'income'", status_code=400)
 
-    if income < 20000 or income > 200000:
-        return JSONResponse(content="Enter value between 20000 and 200000", status_code=200)
+    if income < 1000000 or income > 25000000:
+        return JSONResponse(content="Enter Income value between 1000000 UZS and 25000000 UZS", status_code=200)
     else:
+        converted_income = int((income * 12) / 12500)
         with open('pickles/lin_reg_model.pkl', 'rb') as f:
             loaded_model = pickle.load(f)
-        input_income = [[income]]
+        input_income = [[converted_income]]
         prediction = loaded_model.predict(input_income)
 
         return JSONResponse(content={"prediction": prediction.tolist()}, status_code=200)
