@@ -7,7 +7,7 @@ import pandas as pd
 router = APIRouter()
 
 
-@router.get("/predict/xgboost_regression")
+@router.post("/predict/xgboost_regression") # change GET method to POST
 async def pred_xr(request: Request):
     data = await request.json()
     if request is None:
